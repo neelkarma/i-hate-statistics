@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# fuck-statistics
 
-## Getting Started
+A simple web app that takes a bunch of numbers and spews out a lot of information about them.
 
-First, run the development server:
+<details>
+<summary>Currently supports showing:</summary>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Five Point Summary (Min, Q1, Median, Q3, Max)
+- Sorted Dataset
+- Dataset Size
+- Mean
+- IQR
+- Mode(s)
+- Range
+- Standard Deviation
+- Frequency Distribution Table
+- Cumulative Frequency Distribution Table
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+And more coming soon&trade;.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+</details>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Usage
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Open the website and input the data at the top. It's separated by any whitespace and commas (the regex `/[\s,]+/` for all the programmers out there).
 
-## Learn More
+## Motivation
 
-To learn more about Next.js, take a look at the following resources:
+Please take a moment to observe this abomination someone dared to call a maths problem:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![The very definition of shitfuckery.](./shitfuckery.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Now, there is **_no way in hell_** that I'm going to sort that by hand. So I'm making the computer do it. Whoever made this maths problem can go kiss my ass. And to whoever created this excuse of a maths problem, _fuck you to the moon_.

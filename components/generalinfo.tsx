@@ -17,6 +17,10 @@ const GeneralInfo: FC<{ dataset: Dataset }> = ({ dataset }) => {
           <Td>{dataset.data.join(", ")}</Td>
         </Tr>
         <Tr>
+          <Td>Dataset Size</Td>
+          <Td>{dataset.data.length}</Td>
+        </Tr>
+        <Tr>
           <Td>Mean</Td>
           <Td>{dataset.mean()}</Td>
         </Tr>
