@@ -42,33 +42,45 @@ const Home: NextPage = () => {
         onChange={(e) => setInput(e.target.value)}
       />
       {dataset ? (
-        <>
-          <Heading pb={5}>5-Point Summary</Heading>
-          <FivePointSummary dataset={dataset} />
-          <Divider pt={5} />
-          <Heading py={5}>General Info</Heading>
-          <GeneralInfo dataset={dataset} />
-          <Divider pt={5} />
-          <Heading py={5}>Frequency Distribution Table</Heading>
-          <FormControl display="flex" alignItems="center">
-            <FormLabel htmlFor="cumulativeSwitch" mb="0">
-              Cumulative?
-            </FormLabel>
-            <Switch
-              id="cumulativeSwitch"
-              onChange={(e) => setIsCumulative(e.target.checked)}
-            />
-          </FormControl>
-          {isCumulative ? (
-            <CFDT dataset={dataset} />
-          ) : (
-            <FDT dataset={dataset} />
-          )}
-        </>
+        dataset.data.some(isNaN) ? (
+          <Grid h="100%">
+            <Center>
+              <Heading color="gray.600" textAlign="center">
+                Perhaps I should've been more clear - when I say "dataset" I
+                mean <em>numbers separated by whitespace and/or commas</em>, not
+                whatever you just used.
+              </Heading>
+            </Center>
+          </Grid>
+        ) : (
+          <>
+            <Heading pb={5}>5-Point Summary</Heading>
+            <FivePointSummary dataset={dataset} />
+            <Divider pt={5} />
+            <Heading py={5}>General Info</Heading>
+            <GeneralInfo dataset={dataset} />
+            <Divider pt={5} />
+            <Heading py={5}>Frequency Distribution Table</Heading>
+            <FormControl display="flex" alignItems="center">
+              <FormLabel htmlFor="cumulativeSwitch" mb="0">
+                Cumulative?
+              </FormLabel>
+              <Switch
+                id="cumulativeSwitch"
+                onChange={(e) => setIsCumulative(e.target.checked)}
+              />
+            </FormControl>
+            {isCumulative ? (
+              <CFDT dataset={dataset} />
+            ) : (
+              <FDT dataset={dataset} />
+            )}
+          </>
+        )
       ) : (
         <Grid h="100%">
           <Center>
-            <Heading color="gray.600">
+            <Heading color="gray.600" textAlign="center">
               Input some data above to get started.
             </Heading>
           </Center>
