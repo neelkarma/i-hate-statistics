@@ -38,13 +38,22 @@ const GeneralInfo: FC<{ dataset: Dataset }> = ({ dataset }) => {
           <Td>IQR</Td>
           <Td>{isNaN(dataset.iqr()) ? "None" : dataset.iqr()}</Td>
         </Tr>
+        {/* TODO: Turn population/sample info into a toggleable value instead of showing both */}
         <Tr>
-          <Td>Variance</Td>
-          <Td>{dataset.variance()}</Td>
+          <Td>Variance (Population)</Td>
+          <Td>{dataset.populationVariance()}</Td>
         </Tr>
         <Tr>
-          <Td>Standard Deviation</Td>
-          <Td>{dataset.stdev()}</Td>
+          <Td>Standard Deviation (Population)</Td>
+          <Td>{dataset.populationStdev()}</Td>
+        </Tr>
+        <Tr>
+          <Td>Variance (Sample)</Td>
+          <Td>{dataset.sampleVariance()}</Td>
+        </Tr>
+        <Tr>
+          <Td>Standard Deviation (Sample)</Td>
+          <Td>{dataset.sampleStdev()}</Td>
         </Tr>
       </Tbody>
     </Table>

@@ -1,5 +1,3 @@
-import { ThemeProvider } from "@emotion/react";
-
 export const asc = (data: number[]) => data.sort((a, b) => a - b);
 export const sum = (data: number[]) => data.reduce((a, b) => a + b, 0);
 
@@ -16,8 +14,10 @@ export class Dataset {
     max?: number;
     range?: number;
     iqr?: number;
-    variance?: number;
-    stdev?: number;
+    populationVariance?: number;
+    sampleVariance?: number;
+    populationStdev?: number;
+    sampleStdev?: number;
     frequencies: { [key: number]: number };
   };
 
@@ -128,18 +128,32 @@ export class Dataset {
     return this.cache.iqr;
   }
 
-  variance() {
-    if (this.cache.variance) return this.cache.variance;
+  populationVariance() {
+    if (this.cache.populationVariance) return this.cache.populationVariance;
     const mean = this.mean();
-    this.cache.variance =
+    this.cache.populationVariance =
       sum(this.data.map((val) => (val - mean) ** 2)) / this.data.length;
-    return this.cache.variance;
+    return this.cache.populationVariance;
   }
 
-  stdev() {
-    if (this.cache.stdev) return this.cache.stdev;
-    this.cache.stdev = this.variance() ** 0.5;
-    return this.cache.stdev;
+  sampleVariance() {
+    if (this.cache.sampleVariance) return this.cache.sampleVariance;
+    const mean = this.mean();
+    this.cache.sampleVariance =
+      sum(this.data.map((val) => (val - mean) ** 2)) / (this.data.length - 1);
+    return this.cache.sampleVariance;
+  }
+
+  populationStdev() {
+    if (this.cache.populationStdev) return this.cache.populationStdev;
+    this.cache.populationStdev = this.populationVariance() ** 0.5;
+    return this.cache.populationStdev;
+  }
+
+  sampleStdev() {
+    if (this.cache.sampleStdev) return this.cache.sampleStdev;
+    this.cache.sampleStdev = this.sampleVariance() ** 0.5;
+    return this.cache.sampleStdev;
   }
 
   count(num: number) {
