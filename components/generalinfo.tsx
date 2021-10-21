@@ -49,11 +49,17 @@ const GeneralInfo: FC<{ dataset: Dataset }> = ({ dataset }) => {
         </Tr>
         <Tr>
           <Td>Variance (Sample)</Td>
-          <Td>{dataset.sampleVariance()}</Td>
+          <Td>
+            {isNaN(dataset.sampleVariance())
+              ? "None"
+              : dataset.sampleVariance()}
+          </Td>
         </Tr>
         <Tr>
           <Td>Standard Deviation (Sample)</Td>
-          <Td>{dataset.sampleStdev()}</Td>
+          <Td>
+            {isNaN(dataset.sampleStdev()) ? "None" : dataset.sampleStdev()}
+          </Td>
         </Tr>
       </Tbody>
     </Table>
