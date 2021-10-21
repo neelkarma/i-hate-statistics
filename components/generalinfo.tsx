@@ -40,15 +40,15 @@ const GeneralInfo: FC<{ dataset: Dataset }> = ({ dataset }) => {
         </Tr>
         {/* TODO: Turn population/sample info into a toggleable value instead of showing both */}
         <Tr>
-          <Td>Variance (Population)</Td>
+          <Td>Population Variance</Td>
           <Td>{dataset.populationVariance()}</Td>
         </Tr>
         <Tr>
-          <Td>Standard Deviation (Population)</Td>
+          <Td>Population Standard Deviation</Td>
           <Td>{dataset.populationStdev()}</Td>
         </Tr>
         <Tr>
-          <Td>Variance (Sample)</Td>
+          <Td>Sample Variance</Td>
           <Td>
             {isNaN(dataset.sampleVariance())
               ? "None"
@@ -56,7 +56,7 @@ const GeneralInfo: FC<{ dataset: Dataset }> = ({ dataset }) => {
           </Td>
         </Tr>
         <Tr>
-          <Td>Standard Deviation (Sample)</Td>
+          <Td>Sample Standard Deviation</Td>
           <Td>
             {isNaN(dataset.sampleStdev()) ? "None" : dataset.sampleStdev()}
           </Td>
