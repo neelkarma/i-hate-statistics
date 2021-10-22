@@ -16,6 +16,7 @@ import FivePointSummary from "../components/fivepointsummary";
 import GeneralInfo from "../components/generalinfo";
 import FDT from "../components/fdt";
 import CFDT from "../components/cfdt";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   const [dataset, setDataset] = useState<Dataset | null>(null);
@@ -36,6 +37,9 @@ const Home: NextPage = () => {
 
   return (
     <VStack h="90vh" mx="10" mt="5">
+      <Head>
+        <title>Fuck Statistics</title>
+      </Head>
       <Input
         placeholder="Input the dataset here"
         mb={5}
