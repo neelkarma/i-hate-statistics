@@ -50,8 +50,9 @@ const Home: NextPage = () => {
           <Grid h="100%">
             <Center>
               <Heading color="gray.600" textAlign="center">
-                Perhaps I should've been more clear - when I say "dataset" I
-                mean <em>numbers separated by whitespace and/or commas</em>, not
+                Perhaps I should&apos;ve been more clear - when I say
+                &quot;dataset&quot; I mean{" "}
+                <em>numbers separated by whitespace and/or commas</em>, not
                 whatever you just used.
               </Heading>
             </Center>
