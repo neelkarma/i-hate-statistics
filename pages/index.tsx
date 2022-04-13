@@ -10,6 +10,7 @@ import {
 import {
   ChangeEventHandler,
   FocusEventHandler,
+  KeyboardEventHandler,
   useCallback,
   useState,
 } from "react";
@@ -42,6 +43,13 @@ const Index: NextPage = () => {
     []
   );
 
+  const onInputKeyDown = useCallback<KeyboardEventHandler<HTMLInputElement>>(
+    (e) => {
+      if (e.key == "Enter") onSubmit();
+    },
+    [onSubmit]
+  );
+
   return (
     <FadeProvider>
       <Center h="100vh">
@@ -55,7 +63,8 @@ const Index: NextPage = () => {
               isInvalid={invalid}
               onChange={onInputChange}
               onFocus={onInputFocus}
-              placeholder="Dataset, separated by commas or spaces (or both)"
+              onKeyDown={onInputKeyDown}
+              placeholder="Dataset, separated by commas and/or spaces"
             />
             <Button onClick={onSubmit} colorScheme="blue">
               Compute
