@@ -1,24 +1,21 @@
-import type { Dataset } from "../lib/dataset";
-import type { FC } from "react";
-import { SimpleGrid } from "@chakra-ui/layout";
-import GrandStat from "./grandstat";
+import { FC } from "react";
+import { Text } from "@chakra-ui/react";
+import { Dataset } from "../lib/dataset";
 
-const FivePointSummary: FC<{ dataset: Dataset }> = ({ dataset }) => {
+interface FivePointSummaryProps {
+  dataset: Dataset;
+}
+
+export const FivePointSummary: FC<FivePointSummaryProps> = ({ dataset }) => {
   return (
-    <SimpleGrid pb={5} columns={[1, 1, 5]} spacing={[5, 5, 10]}>
-      <GrandStat label="MIN" value={dataset.min()} />
-      <GrandStat
-        label="Q1"
-        value={isNaN(dataset.q1()) ? "None" : dataset.q1()}
-      />
-      <GrandStat label="MEDIAN" value={dataset.median()} />
-      <GrandStat
-        label="Q3"
-        value={isNaN(dataset.q3()) ? "None" : dataset.q3()}
-      />
-      <GrandStat label="MAX" value={dataset.max()} />
-    </SimpleGrid>
+    <>
+      <Text color="gray.400" fontSize="2xl">
+        Five Point Summary
+      </Text>
+      <Text fontFamily="mono" fontWeight="bold" fontSize="6xl">
+        {dataset.min()}, {dataset.q1()}, {dataset.median()}, {dataset.q3()},{" "}
+        {dataset.max()}
+      </Text>
+    </>
   );
 };
-
-export default FivePointSummary;

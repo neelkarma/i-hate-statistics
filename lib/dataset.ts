@@ -29,6 +29,19 @@ export class Dataset {
     };
   }
 
+  static fromInput(input: string) {
+    return new Dataset(
+      input
+        .split(/[\s,]+/)
+        .filter((val) => val.length)
+        .map((val) => Number(val))
+    );
+  }
+
+  isValid() {
+    return this.data.length > 1 && !this.data.some(isNaN);
+  }
+
   modes() {
     if (this.cache.modes) return this.cache.modes;
 
@@ -44,7 +57,7 @@ export class Dataset {
 
     for (const [num, freq] of Object.entries(frequency)) {
       if (freq !== maxFreq) continue;
-      //@ts-ignore
+      //@ts-expect-error
       modes.push(num);
     }
 

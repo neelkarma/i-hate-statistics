@@ -1,98 +1,68 @@
-import type { NextPage } from "next";
+import { NextPage } from "next";
 import {
-  Grid,
+  Button,
   Center,
+  Heading,
+  HStack,
   Input,
   VStack,
-  Heading,
-  Divider,
-  Switch,
-  FormControl,
-  FormLabel,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import {
+  ChangeEventHandler,
+  FocusEventHandler,
+  useCallback,
+  useState,
+} from "react";
 import { Dataset } from "../lib/dataset";
-import FivePointSummary from "../components/fivepointsummary";
-import GeneralInfo from "../components/generalinfo";
-import FDT from "../components/fdt";
-import CFDT from "../components/cfdt";
+import { useRouter } from "next/router";
 import Head from "next/head";
+import { FadeProvider } from "../components/FadeProvider";
 
-const Home: NextPage = () => {
-  const [dataset, setDataset] = useState<Dataset | null>(null);
+const Index: NextPage = () => {
+  const router = useRouter();
+  const [invalid, setInvalid] = useState(false);
   const [input, setInput] = useState("");
-  const [isCumulative, setIsCumulative] = useState(false);
 
-  useEffect(() => {
-    if (!input.length) return setDataset(null);
-    setDataset(
-      new Dataset(
-        input
-          .split(/[\s,]+/)
-          .filter((val) => val.length)
-          .map((val) => Number(val))
-      )
-    );
-  }, [input]);
+  const onSubmit = useCallback(() => {
+    // Validate Input
+    const dataset = Dataset.fromInput(input);
+    if (!dataset.isValid()) return setInvalid(true);
+
+    // Push results url to router
+    router.push(`/result?input=${encodeURIComponent(input)}`);
+  }, [input, router]);
+
+  const onInputChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
+    (e) => setInput(e.target.value),
+    []
+  );
+
+  const onInputFocus = useCallback<FocusEventHandler<HTMLInputElement>>(
+    () => setInvalid(false),
+    []
+  );
 
   return (
-    <VStack h="90vh" mx="10" mt="5">
-      <Head>
-        <title>Fuck Statistics</title>
-      </Head>
-      <Input
-        placeholder="Input the dataset here"
-        mb={5}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      {dataset ? (
-        dataset.data.some(isNaN) ? (
-          <Grid h="100%">
-            <Center>
-              <Heading color="gray.600" textAlign="center">
-                Perhaps I should&apos;ve been more clear - when I say
-                &quot;dataset&quot; I mean{" "}
-                <em>numbers separated by whitespace and/or commas</em>, not
-                whatever you just used.
-              </Heading>
-            </Center>
-          </Grid>
-        ) : (
-          <>
-            <Heading pb={5}>5-Point Summary</Heading>
-            <FivePointSummary dataset={dataset} />
-            <Divider pt={5} />
-            <Heading py={5}>General Info</Heading>
-            <GeneralInfo dataset={dataset} />
-            <Divider pt={5} />
-            <Heading py={5}>Frequency Distribution Table</Heading>
-            <FormControl display="flex" alignItems="center">
-              <FormLabel htmlFor="cumulativeSwitch" mb="0">
-                Cumulative?
-              </FormLabel>
-              <Switch
-                id="cumulativeSwitch"
-                onChange={(e) => setIsCumulative(e.target.checked)}
-              />
-            </FormControl>
-            {isCumulative ? (
-              <CFDT dataset={dataset} />
-            ) : (
-              <FDT dataset={dataset} />
-            )}
-          </>
-        )
-      ) : (
-        <Grid h="100%">
-          <Center>
-            <Heading color="gray.600" textAlign="center">
-              Input some data above to get started.
-            </Heading>
-          </Center>
-        </Grid>
-      )}
-    </VStack>
+    <FadeProvider>
+      <Center h="100vh">
+        <Head>
+          <title>Fuck Statistics</title>
+        </Head>
+        <VStack w="lg" gap={2}>
+          <Heading>Fuck Statistics</Heading>
+          <HStack w="full">
+            <Input
+              isInvalid={invalid}
+              onChange={onInputChange}
+              onFocus={onInputFocus}
+              placeholder="Dataset, separated by commas or spaces"
+            />
+            <Button onClick={onSubmit}>Compute</Button>
+          </HStack>
+        </VStack>
+      </Center>
+    </FadeProvider>
   );
 };
 
-export default Home;
+export default Index;
