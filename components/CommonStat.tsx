@@ -9,7 +9,7 @@ interface CommonStatProps {
 export const CommonStat: FC<CommonStatProps> = ({ label: name, value }) => {
   return (
     <VStack align="left">
-      <Text fontFamily="mono" fontSize="3xl">
+      <Text fontFamily="mono" fontSize="3xl" isTruncated>
         {value}
       </Text>
       <Text color="gray.400" fontSize="lg">

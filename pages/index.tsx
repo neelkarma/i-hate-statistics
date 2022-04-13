@@ -55,9 +55,11 @@ const Index: NextPage = () => {
               isInvalid={invalid}
               onChange={onInputChange}
               onFocus={onInputFocus}
-              placeholder="Dataset, separated by commas or spaces"
+              placeholder="Dataset, separated by commas or spaces (or both)"
             />
-            <Button onClick={onSubmit}>Compute</Button>
+            <Button onClick={onSubmit} colorScheme="blue">
+              Compute
+            </Button>
           </HStack>
         </VStack>
       </Center>

@@ -20,7 +20,7 @@ const CFDT: FC<CFDTProps> = ({ dataset }) => {
   let cf = 0;
   return (
     <VStack align="left">
-      <Box overflowX="auto">
+      <Box overflowX="auto" px={5}>
         <Table>
           <Thead>
             <Tr>
@@ -58,11 +58,11 @@ const CFDT: FC<CFDTProps> = ({ dataset }) => {
           </Tbody>
         </Table>
       </Box>
-      <Text fontFamily="mono">
+      <Text fontFamily="mono" fontSize="lg">
         sum(f) ={" "}
         {dataset.unique.map((x) => dataset.count(x)).reduce((a, b) => a + b, 0)}
       </Text>
-      <Text fontFamily="mono">
+      <Text fontFamily="mono" fontSize="lg">
         sum(fx) ={" "}
         {dataset.unique
           .map((x) => dataset.count(x) * x)

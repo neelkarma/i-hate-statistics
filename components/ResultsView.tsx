@@ -2,17 +2,16 @@ import { Box, StackProps, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FC, ReactNode, Children } from "react";
 
-type StaggerFadeUpProps = {
+interface ResultsViewProps {
   children: ReactNode;
   interval?: number;
   duration?: number;
-} & StackProps;
+}
 
-export const ResultsView: FC<StaggerFadeUpProps> = ({
+export const ResultsView: FC<ResultsViewProps> = ({
   children,
   interval,
   duration,
-  ...props
 }) => {
   return (
     <VStack
@@ -27,14 +26,13 @@ export const ResultsView: FC<StaggerFadeUpProps> = ({
       initial="hidden"
       animate="show"
       textAlign="left"
-      pt={5}
+      py={5}
       mx={{
         base: "5%",
         md: "10%",
         lg: "20%",
       }}
       gap={2}
-      {...props}
     >
       {Children.map(children, (child) => {
         return (
