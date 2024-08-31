@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-sans bg-gray-100 dark:bg-gray-800 dark:text-white;
+}
+
+input {
+  @apply p-2 rounded-lg bg-transparent border-1 border-gray-400 dark:border-gray-600;
+}
+
+table {
+  @apply text-left;
+}
+
+tr {
+  @apply border-t-1 border-b-1 border-gray-400 dark:border-gray-600;
+}
+
+th,
+td {
+  @apply p-2;
+}
+
+td {
+  @apply font-mono;
+}
+
+a {
+  @apply underline;
+}

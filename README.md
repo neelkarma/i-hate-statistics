@@ -1,4 +1,4 @@
-# fuck-statistics
+# I Hate Statistics
 
 A simple web app that takes a bunch of numbers and spews out a lot of information about them.
 
@@ -22,12 +22,12 @@ And more coming soon&trade;.
 
 ## Usage
 
-Open the website and input the data at the top. It's separated by any whitespace and commas (the regex `/[\s,]+/` for all the programmers out there).
+Open the website and input the data at the top. It's separated by any whitespace and commas (`/[\s,]+/`).
 
 ## Motivation
 
-Please take a moment to observe this abomination someone dared to call a maths problem:
+I made this as a response to this maths problem that I had to do:
 
-![The very definition of shitfuckery.](./shitfuckery.png)
+![A very stupid maths problem.](./wtf.png)
 
-Now, there is **_no way in hell_** that I'm going to sort that by hand. So I'm making the computer do it. Whoever made this maths problem can go kiss my ass. And to whoever created this excuse of a maths problem, _fuck you to the moon_.
+...need I explain myself any further?
